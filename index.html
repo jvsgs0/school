@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Alunos - Zulfur High School</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4e1c1;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .logo-grande {
+            width: 300px;
+            height: auto;
+            margin-top: 20px;
+        }
+        .header {
+            background-color: rgb(90, 50, 20);
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-menor {
+            width: 100px;
+            margin-right: 50px;
+            height: auto;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: #f8f1e4;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #c1a68d;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: rgb(90, 50, 20);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: rgb(70, 40, 15);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #e8d6b7;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .remove-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .remove-btn:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <img src="assets/logo extend.png" class="logo-grande" alt="Logo Grande" />
+    <div class="header">
+        <img src="assets/logo.png" class="logo-menor" alt="Logo Menor" />
+        <span>Zulfur High School</span>
+    </div>
+    <div class="container">
+        <h2>Cadastro de Alunos</h2>
+        <input type="text" id="nome" placeholder="Nome">
+        <input type="number" id="idade" placeholder="Idade">
+        <input type="text" id="curso" placeholder="Curso">
+        <input type="number" id="nota1" placeholder="Nota 1" min="0" max="10">
+        <input type="number" id="nota2" placeholder="Nota 2" min="0" max="10">
+        <input type="number" id="nota3" placeholder="Nota 3" min="0" max="10">
+        <button onclick="cadastrarAluno()">Cadastrar</button>
+        <button onclick="exportarTxt()">Exportar TXT</button>
+        <h3>Lista de Alunos</h3>
+        <ul id="listaAlunos"></ul>
+    </div>
+
+    <script>
+        const livro = {
+            titulo: "Diário de um banana",
+            autor: {
+                nome: "Jeff Kinney",
+                anoNascido: 1971,
+            },
+            anoPublicado: 2007,
+            editora: "Amulet Books",
+            mostrarDetalhes: function() {
+                const idade = 2025 - this.autor.anoNascido;
+                console.log(`Título: ${this.titulo}, Nome do autor: ${this.autor.nome}, Idade do autor: ${idade}, Ano da publicação: ${this.anoPublicado} e editora: ${this.editora}`);
+            }
+        }
+
+        livro.mostrarDetalhes()
+
+        const turma = [
+            aluno1 = {
+                nome: "João",
+                idade: 14,
+                curso: "programação"
+            },
+            aluno2 = {
+                nome: "Lucas",
+                idade: 15,
+                curso: "medicina"
+            },
+            aluno3 = {
+                nome: "Miguel",
+                idade: 16,
+                curso: "professor"
+            }
+        ];
+
+        console.log(turma[1].nome);
+
+        const carro = {
+            marca: "Toyota",
+            modelo: "CAMRY",
+            ano: 2025
+        }
+
+        const { marca, modelo, ano } = carro;
+
+        console.log(marca, modelo, ano);
+
+        const cursinho = {
+            aluno1: {
+                nome: "Gabriel",
+                idade: "15",
+                curso: "física",
+                notas: {
+                    nota1: 5,
+                    nota2: 7,
+                    nota3: 10
+                },
+                mostrarDetalhes: function() {
+                    const soma = this.notas.nota1 + this.notas.nota2 + this.notas.nota3;
+                    const divisao = parseInt(soma / 3);
+                    console.log(`Nome: ${this.nome}, Idade: ${this.idade}, Curso: ${this.curso} e Média: ${divisao}`)
+                }
+            },
+            aluno2: {
+                nome: "Theo",
+                idade: "17",
+                curso: "engenharia",
+                notas: {
+                    nota1: 9,
+                    nota2: 7,
+                    nota3: 8
+                },
+                mostrarDetalhes: function() {
+                    const soma = this.notas.nota1 + this.notas.nota2 + this.notas.nota3;
+                    const divisao = parseInt(soma / 3);
+                    console.log(`Nome: ${this.nome}, Idade: ${this.idade}, Curso: ${this.curso} e Média: ${divisao}`)
+                }
+            },
+            aluno3: {
+                nome: "Yhago",
+                idade: "16",
+                curso: "educação física",
+                notas: {
+                    nota1: 1,
+                    nota2: 5,
+                    nota3: 7,
+                },
+                mostrarDetalhes: function() {
+                    const soma = this.notas.nota1 + this.notas.nota2 + this.notas.nota3;
+                    const divisao = parseInt(soma / 3);
+                    console.log(`Nome: ${this.nome}, Idade: ${this.idade}, Curso: ${this.curso} e Média: ${divisao}`)
+                }
+            }
+        }
+
+        cursinho.aluno1.mostrarDetalhes();
+        cursinho.aluno2.mostrarDetalhes();
+        cursinho.aluno3.mostrarDetalhes();
+
+        let escola = { alunos: [] };
+
+        if (localStorage.getItem("escola")) {
+            escola = JSON.parse(localStorage.getItem("escola"));
+        }
+        atualizarLista();
+
+        function cadastrarAluno() {
+            let nome = document.getElementById("nome").value;
+            let idade = document.getElementById("idade").value;
+            let curso = document.getElementById("curso").value;
+            let nota1 = parseFloat(document.getElementById("nota1").value);
+            let nota2 = parseFloat(document.getElementById("nota2").value);
+            let nota3 = parseFloat(document.getElementById("nota3").value);
+
+            if (!nome || !idade || !curso || isNaN(nota1) || isNaN(nota2) || isNaN(nota3)) {
+                alert("Preencha todos os campos corretamente!");
+                return;
+            }
+            if (nota1 < 0 || nota1 > 10 || nota2 < 0 || nota2 > 10 || nota3 < 0 || nota3 > 10) {
+                alert("As notas devem estar entre 0 e 10!");
+                return;
+            }
+
+            let media = ((nota1 + nota2 + nota3) / 3).toFixed(2);
+
+            let aluno = {
+                nome: nome,
+                idade: idade,
+                curso: curso,
+                notas: { nota1, nota2, nota3 },
+                media: media
+            };
+
+            escola.alunos.push(aluno);
+            localStorage.setItem("escola", JSON.stringify(escola));
+            atualizarLista();
+        }
+
+        function atualizarLista() {
+            let lista = document.getElementById("listaAlunos");
+            lista.innerHTML = "";
+            escola.alunos.forEach((aluno, index) => {
+                lista.innerHTML += `<li>
+                    <div>
+                        <strong>${aluno.nome}</strong> - ${aluno.idade} anos - ${aluno.curso}<br>
+                        Notas: ${aluno.notas.nota1}, ${aluno.notas.nota2}, ${aluno.notas.nota3} | <strong>Média:</strong> ${aluno.media}
+                    </div>
+                    <button class="remove-btn" onclick="removerAluno(${index})">Remover</button>
+                </li>`;
+            });
+        }
+
+        function removerAluno(index) {
+            escola.alunos.splice(index, 1);
+            localStorage.setItem("escola", JSON.stringify(escola));
+            atualizarLista();
+        }
+
+        function exportarTxt() {
+            let texto = "Lista de Alunos:\n";
+            escola.alunos.forEach(aluno => {
+                texto += `Nome: ${aluno.nome}, Idade: ${aluno.idade}, Curso: ${aluno.curso}, Notas: ${aluno.notas.nota1}, ${aluno.notas.nota2}, ${aluno.notas.nota3}, Média: ${aluno.media}\n`;
+            });
+            let blob = new Blob([texto], { type: "text/plain" });
+            let link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "alunos.txt";
+            link.click();
+        }
+    </script>
+</body>
+</html>
